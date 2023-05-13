@@ -13,8 +13,9 @@ out vec4 FragColor;
 
 void main() {
     // Color
-    //FragColor = texture(image, model_uv);
-    //float timeTest = float((int(time) % 1000)) / 1000.0;
-    //FragColor = vec4(vec3(timeTest), 1);
-    FragColor = vec4(vec3(time / 10000.0), 1);
+    vec2 transformedUV = (model_uv - 0.5) * 2.0;
+    float radius = distance(vec2(0,0), transformedUV);
+    transformedUV += (sin(radius * 30.0 - (time/1000.0) * 5.0) + 0.5) / 60.0;
+    transformedUV = (transformedUV + 1.0) / 2.0;
+    FragColor = texture(image, transformedUV);
 }
