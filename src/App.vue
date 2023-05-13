@@ -197,6 +197,7 @@ export default {
         engine.runRenderLoop(() => {
             time += engine.getDeltaTime();
             this.materials.ripple.setFloat('time', time);
+            this.materials.custom.setFloat('time', time);
             this.scene.render();
         });
     }
